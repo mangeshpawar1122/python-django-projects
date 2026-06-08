@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Filter Django Project</title>
+</head>
+<>
+  <h1>Welcome to the Filter Django Project</h1>
+  <p>This is the home page of the Filter Django Project. You can navigate to different pages to see how filtering works in Django.</p>
+  <hr>
+  <h2>Strings and Text filters</h2>
+  <p>Using the strings filter, you can manipulate string data in your templates. For example, you can convert a string to uppercase, lowercase, or capitalize it.</p>
+  <h3>This is a normal string</h3>
+  <p>original string : {{ post.title }}</p>
+  <p>Example usage:</p>
+  <h4>Uppercase</h4>
+  <p><b>Uppercase :</b> {{ post.title|upper }}</p>
+  <h4>Lowercase</h4>
+  <p><b>Lowercase :</b> {{ post.title|lower }}</p>
+  <h4>Capitalize</h4>
+  <p><b>Capitalize :</b> {{ post.title|capfirst }}</p>
+  <h4>TruncateChars</h4>
+  <p><b>TruncateChars :</b> {{ post.title|truncatechars:10 }}</p>
+  <h4>Truncate Words</h4>
+  <p><b>Truncate Words :</b> {{ post.title|truncatewords:2 }}</p>
+  <h4>Linebreaks</h4>
+  <p><b>Linebreaks :</b> {{ post.title|linebreaks }}</p>
+
+
+
+{% comment %}
+this is a comment and will not be rendered in the template. You can use comments to add notes or explanations for yourself or other developers who may work on the project in the future.
+{% endcomment %}
+<hr>
+
+  <h4>Truncate</h4>
+  <p><b>Truncate :</b> {{ post.title|truncatechars:10 }}</p>
+<h4>Titleize</h4>
+  <p><b>Titleize :</b> {{ post.title|title }}</p>
+  <h4>Length</h4>
+  <p><b>Length :</b> {{ post.title|length }}</p>
+  <h4>Default</h4>
+  <p><b>Default :</b> {{ post.title|default:"No title available" }}</p>
+  <h4>Default If Empty</h4>
+  <p><b>Default If Empty :</b> {{ post.title|default_if_none:"No title available" }}</p>
+  <h4>Word Count</h4>
+  <p><b>Word Count :</b> {{ post.title|wordcount }}</p>
+
+
+  <h1>Number Filters </h1>
+  <p>Number filters allow you to manipulate numeric values in your templates.</p>
+  {% comment %} Add {% endcomment %}
+  <h4>Add</h4>
+  <p><b>Original Price :</b>{{ post.price }}</p>
+  <p><b>Add (10) :</b> {{ post.price|add:10 }}</p>
+
+  {% comment %} Division by {% endcomment %}
+  <h4>Division by</h4>
+  {% if post.numbers|divisibleby:2%}
+  <p>{{ post.numbers }} is Even </p>
+  {% else %}
+  <p>{{ post.numbers }} is Odd </p>
+  {% endif %}
+
+  {% comment %} Floatformat {% endcomment %}
+
+  <h4>Floatformat</h4>
+  <p><b>Floatformat :</b> {{ post.comments_counts|floatformat:2 }}</p>
+
+
+  <h4>Divisibleby</h4>
+  <p><b>Divisibleby :</b> {% if post.comments_counts|divisibleby:1000 %}Yes{% else %}No{% endif %}</p>
+  <hr>
+
+  {% comment %} List Filters {% endcomment %}
+  <h1>List Filters</h1>
+  <p>List filters allow you to manipulate lists and querysets in your templates.</p>
+  <h4>First</h4>
+  <p><b>First : </b>{{ post.tags|first }}</p>
+  <h4>Last</h4>
+  <p><b>Last : </b>{{ post.tags|last }}</p>
+  <h4>Length</h4>
+  <p><b>Length : </b>{{ post.tags|length }}</p>
+  <h4>Join</h4>
+  <p><b>Join :</b> {{ post.tags|join:" " }}</p>
+  <h4>Slice</h4>
+  <p><b>Slice(2) :</b> {{ post.tags|slice:":2" }}</p>
+  <hr>
+
+  {% comment %} Author Available {% endcomment %}
+  <h4>Author Available</h4>
+  <p><b>Author Available? :</b> {{ post.author|yesno:"Yes,No,Maybe" }}</p>
+  <hr>
+
+  
+  {% comment %} Comments_counts {% endcomment %}
+  <h4>Comments Count</h4>
+  <p>this is the original comment count and it is a number</p>
+  <p><b>Comments Count :</b> {{ post.comments_counts }} Comment{{ post.comments_counts|pluralize}}</p>
+  <hr>
+
+  {% comment %} Date Filters {% endcomment %}
+  <h1>Date Filters</h1>
+  <p>Date filters allow you to manipulate date and time values in your templates.</p>
+
+  <h4>Date Original</h4>
+  <p><b>Date Original created_at :</b> {{ post.created_at }}</p>
+
+  <h4>Date Format</h4>
+  <p><b>Date Format (D M Y) :</b> {{ post.created_at|date:"D d M Y" }}</p>
+
+  <h4>Time Format</h4>
+  <p><b>Time Only (H:i) :</b> {{ post.created_at|time:"H:i" }}</p>
+
+  <h4>Timesince</h4>
+  <p><b>Timesince :</b> {{ post.created_at|timesince }}</p>
+
+  <h4>Timeuntil</h4>
+  <p><b>Timeuntil :</b> {{ post.created_at|timeuntil }}</p>
+  <hr>
+
+  {% comment %} Encoding and Formatting  {% endcomment %}  
+  <h1>Encoding and Formatting Filters</h1>
+  <p>Encoding and formatting filters allow you to manipulate the way data is displayed in your templates.</p>
+  <h4>Title Encode and Urlscoding</h4>
+  <p><b>Title Encode :</b> {{ post.title|urlencode }}</p>
+
+  <h4>Float Formate Example</h4>
+  <p><b>Float Formate Example:</b> {{ 123.561345985556|floatformat:4 }}</p>
+
+  <h4>Linebreaksbr</h4> 
+  <p><b>Linebreaksbr :</b> {{ post.title|linebreaksbr }}</p>
+
+  <h4>Escape</h4>
+  <p><b>Escape :</b> {{ post.title|escape }}</p>
+
+  <h4>Safe</h4>
+  <p><b>Safe :</b> {{ post.title|safe }}</p>
+
+
+
+
+</body>
+</html>
