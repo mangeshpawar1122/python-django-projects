@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %} Home page {% endblock %}
+
+{% block content %}
+  <h1>Welcome to My Site</h1>
+  <p>This is the home page. Here you can find the latest updates and news about our services.</p>
+  <img src="{% static 'images/logo.jpg' %}" alt="Logo Image">
+  <form method="POST">
+    {% csrf_token %}
+    <label for="name">Name:</label>
+    <input type="text" id="name" name="name" placeholder="Enter your name">
+    <label for="email">Email:</label>
+    <input type="email" id="email" name="email" placeholder="Enter your email">
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" placeholder="Password">
+    <button type="submit">Submit</button>
+  </form>
+  <button onclick="showAlert()">click me</button>
+{% endblock %}
