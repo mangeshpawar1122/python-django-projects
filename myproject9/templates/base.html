@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>{% block title %} My Title {% endblock %}</title>
+  {% load static %}
+  {% block corecss %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  {% endblock  %}
+</head>
+<body>
+  <div class="container">
+    {% block content %}
+    <!-- Content will be injected here -->
+    <h1>Welcome to My Site</h1>
+    {% regroup student by class as grouped_students %}
+    <ul>
+      {% for group in grouped_students %}
+        <li>{{ group.grouper }}
+          <ul>
+            {% for student in group.list %}
+              <li>{{ student.name }}</li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% endfor %}
+    </ul>
+
+    <hr>
+   {% comment %} this is a widthratio statement {% endcomment %}
+
+   <p> width ratio is a template tag that calculates a ratio of two numbers and returns it as a percentage. The syntax is syntax: widthratio this_value max_value max_width . For example, if you want to calculate the percentage of 50 out of 100, you can use ex: widthratio 50 100 100 , which will return 50%. </p>
+   
+
+   <h2>Width Ratio Example</h2>
+   <p>Progress : {% widthratio 50 100 100 %}%</p>
+   <hr>
+   <h2>Spaceless Example</h2>
+   <p>Spaceless is a template tag that removes whitespace between HTML tags. It can be used to optimize the output of your templates by reducing the amount of unnecessary whitespace. The syntax is  spaceless  ...  endspaceless . Any HTML code placed between these tags will have its whitespace removed.</p>
+    <p>Some text with extra whitespace and remove a all line spaces</p>
+   <p>Another line of text</p>
+   {% spaceless %}
+   <span> This is some text with extra whitespace. </span>
+   <span> This is another line of text. </span>
+   {% endspaceless %}
+   <hr>
+    <h2>outline filter </h2>
+    <p>Outline filter is a template filter that adds an outline to text. It can be used to make text stand out and improve readability. The syntax is  value|outline  . For example, if you want to add an outline to the text "Hello World", you can use ex:  "Hello World"|outline , which will return the text with an outline.</p>
+    {% filter upper %}
+    <p>This text will be converted to uppercase.</p>
+    {% endfilter %}
+    <hr>
+    <h2>inline filters</h2>
+    <p>Inline filters are a way to apply filters directly to variables in your templates. They allow you to modify the output of variables without having to use the  filter  tag. The syntax is variable|filter . For example, if you have a variable called name and you want to convert it to uppercase, you can use ex:  name|upper  , which will return the value of name in uppercase.</p>
+    
+    {% for students in student%}
+    <p>{{ students.name|lower }} and is in class {{ students.class|add:"1" }}</p>
+    {% endfor %}
+    {% endblock %}
+</body>
+</html>
