@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title># 3 Template</title>
+</head>
+<body>
+  <h1>Blog Home</h1>
+  <p>Welcome to the blog home page!</p>
+  {% comment %} This is a current Date And time {% endcomment %}
+  <h1>Current Date and Time:</h1>
+  <p> i am using now function to display the current date and time.</p>
+  <p>this types 'todays':datetime.now(),</p>
+  {{todays}}
+  <hr>
+
+  {% comment %} this is a if-else statement {% endcomment %}
+
+  {% if blog.1.is_featured %}
+    <h2>Featured Blog: {{ blog.1.title }}</h2>
+  {% else %}
+    <h2>No featured blog today.{{ blog.1.title }}</h2>
+  {% endif %}
+  <hr>
+
+  {% comment %} this is for loop {% endcomment %}
+  <h2>All Blogs:</h2>
+  <ul>
+    {% for blogs in blog %}
+      <li>
+        <h2>{{forloop.counter }}.{{ blogs.title }}-{{ blogs.author }}</h2>
+      </li>
+    {% empty %}
+       <h2> No blogs available.>/h2>
+    {% endfor %}  
+  </ul>
+  <hr>
+
+  {% comment %} this is a with  {% endcomment %}
+  <h1>with statement</h1>
+  <p> with statement is used to assign a value to a variable and use it within a block of code. It helps to avoid repetition and makes the code cleaner.</p>
+  {% with totle_blogs=blog|length%}
+    <p>Totle blogs: {{ totle_blogs }}</p>
+  {% endwith %}
+  <hr>
+
+  {% comment %} this is a Cycle  {% endcomment %}
+  <h1>Cycle statement</h1>  
+  <p>Cycle statement is used to cycle through a list of values. It is often used in templates to alternate between different styles or classes for elements.</p>
+  <h2> Blog in table format:</h2>
+  <table border="1" cellpadding="5" cellspacing="0">
+    {% for blogs in blog %}
+      <tr style="background-color: {% cycle 'lightblue' 'lightgray' %};">
+        <td>{{ forloop.counter }}</td>
+        <td>{{ blogs.title }}</td>
+        <td>{{ blogs.author }}</td>
+      </tr>
+    {% endfor %}
+  </table>
+  <hr>
+
+  {% comment %} this is a firstof   {% endcomment %}
+  <h1>Firstof statement</h1>
+  <p>Firstof statement is used to display the first non-empty value from a list of variables. It is useful when you want to display a default value if all other values are empty.</p>
+  <h2>First non-empty blog title:</h2>
+  <p>Author: {% firstof blog.1.author "deepak" %}</p>
+
+  <hr>
+  {% comment %} this is a verbatim statement  {% endcomment %}
+  <h1>Verbatim statement</h1>
+  <p>Verbatim statement is used to include a block of code that should not be processed by the template engine. It is useful when you want to include code that contains template syntax without it being interpreted.</p>
+  <h2>Example of verbatim statement:</h2>
+  {% verbatim  %}
+    <p>This is a verbatim block. The following code will not be processed by the template engine:</p>
+    <p>{{ This will not be rendered }}</p>
+    <p>Author: {{ blog.1.author }}</p>
+  {% endverbatim  %}
+
+  <hr>
+  {% comment %} this is a autoescape on/off statement  {% endcomment %}
+  <h1>Autoescape statement</h1>
+  <p>Autoescape statement is used to control the autoescaping of variables in the template. It is useful when you want to include HTML content in your template without it being escaped.</p>
+  <h2>Example of autoescape statement:</h2>
+  <p> This is an autoescape on block. The following code will be escaped:</p>
+  <p> We will use the following HTML code to demonstrate autoescaping:</p>
+  <p> default(Safe Escaped):{{ html_code }}</p>
+  <p> autoescape on : {{ html_code }}</p>
+
+<h3> Now we will turn off autoescape to see the difference:</h3>
+
+  <p> autoescape  off : {{ html_code|safe }}</p>
+
+  {% autoescape off %}
+    <p>This is an autoescape off block. The following code will not be escaped:</p>
+    <p>Autoescape Off :{{ html_code }}</p>
+  {% endautoescape %}
+
+</body>
+</html>
