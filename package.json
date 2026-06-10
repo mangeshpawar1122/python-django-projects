@@ -1,0 +1,26 @@
+{
+  "scripts": {
+    "dev": "npx @tailwindcss/cli -i ./blog/static/src/input.css -o ./blog/static/src/output.css --watch"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.3.0",
+    "tailwindcss": "^4.3.0"
+  },
+  "name": "django",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mangeshpawar1122/python-django-projects.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/mangeshpawar1122/python-django-projects/issues"
+  },
+  "homepage": "https://github.com/mangeshpawar1122/python-django-projects#readme"
+}
